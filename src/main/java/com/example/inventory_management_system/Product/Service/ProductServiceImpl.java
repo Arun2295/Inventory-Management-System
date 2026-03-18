@@ -1,6 +1,7 @@
 package com.example.inventory_management_system.Product.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.inventory_management_system.Product.DTO.RequestDto;
 import com.example.inventory_management_system.Product.Entity.ProductEntity;
@@ -9,7 +10,7 @@ import com.example.inventory_management_system.Product.DTO.ResponseDto;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Service
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
