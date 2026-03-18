@@ -50,10 +50,41 @@ public class AuthController {
         user.setEmail(register.getEmail());
         user.setPassword(passwordEncoder.encode(register.getPassword()));
         
-
         userRepo.save(user);
-        return ResponseEntity.ok("Registration sucessfull");
 
+        // Auto login after successful registration
+        try {
+            authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(register.getEmail(), register.getPassword()));
+            String token = jwtUtil.generateToken(register.getEmail());
+            return ResponseEntity.ok().header("set-cookie", cookies.createJwtcookie(token).toString())
+                    .body("Registration and login successful");
+        } catch (AuthenticationException e) {
+            return ResponseEntity.ok("Registration successful, but auto-login failed");
+        }
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> getCurrentUser() {
+        var authentication = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated() || "anonymousUser".equals(authentication.getPrincipal())) {
+            return ResponseEntity.status(401).body("Not authenticated");
+        }
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        var userOptional = userRepo.findByEmail(userDetails.getUsername());
+        
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            // Return public info
+            return ResponseEntity.ok(java.util.Map.of(
+                "username", user.getUsername(),
+                "email", user.getEmail(),
+                "role", user.getRole()
+            ));
+        }
+
+        return ResponseEntity.status(401).body("User not found");
     }
 
     @PostMapping("/Login")
