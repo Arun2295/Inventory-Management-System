@@ -1,0 +1,21 @@
+package com.example.inventory_management_system.CustomerSupplierManagement.Entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "supplier")
+
+public class Supplier {
+
+    private String name;
+    private String email;
+    private Long number;
+    private String address;
+
+
+}
