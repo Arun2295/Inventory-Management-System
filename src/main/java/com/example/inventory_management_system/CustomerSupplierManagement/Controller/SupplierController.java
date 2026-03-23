@@ -15,7 +15,7 @@ import com.example.inventory_management_system.CustomerSupplierManagement.DTO.Su
 import com.example.inventory_management_system.CustomerSupplierManagement.Service.SupplierService;
 
 @RestController
-@RequestMapping("/suppliers")
+@RequestMapping("/supplier")
 public class SupplierController {
 
     @Autowired

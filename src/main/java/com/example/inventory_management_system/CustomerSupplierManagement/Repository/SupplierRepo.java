@@ -9,6 +9,5 @@ import com.example.inventory_management_system.CustomerSupplierManagement.Entity
 
 @Repository
 public interface SupplierRepo extends MongoRepository<Supplier, String> {
-    Optional<Supplier> findById(String id);
 
 }

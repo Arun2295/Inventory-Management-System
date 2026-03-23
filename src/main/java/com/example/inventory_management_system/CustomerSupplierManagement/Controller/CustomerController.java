@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import com.example.inventory_management_system.CustomerSupplierManagement.DTO.CustomerResponse;
 import com.example.inventory_management_system.CustomerSupplierManagement.DTO.CustomerRequest;
 
@@ -16,7 +16,7 @@ import com.example.inventory_management_system.CustomerSupplierManagement.DTO.Cu
 import com.example.inventory_management_system.CustomerSupplierManagement.Service.CustomerService;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/customer")
 public class CustomerController {
 
     @Autowired
