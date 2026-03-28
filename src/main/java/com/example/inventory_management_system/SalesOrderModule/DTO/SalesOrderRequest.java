@@ -13,6 +13,9 @@ public class SalesOrderRequest {
     private String customerId;
     private  List<ItemRequest> items;
 
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class ItemRequest{
         private String productid;
         private int quantity;

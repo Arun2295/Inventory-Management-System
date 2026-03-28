@@ -21,7 +21,11 @@ public class SalesOrderResponse {
     private double totalAmount;
     private List<ItemResponse> items;
 
-    private static class ItemResponse{
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ItemResponse{
         private String productid;
         private String productname;
         private double price;
