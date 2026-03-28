@@ -1,6 +1,9 @@
 package com.example.inventory_management_system.SalesOrderModule.Entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.example.inventory_management_system.SalesOrderModule.Enum.OrderStatus;
+
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -22,7 +25,7 @@ public class SalesEntity {
     private String customerId; 
     private List<SalesOrderItem> items;
     private LocalDate orderDate;
-    private String status;
+    private OrderStatus status;
     private double totalAmount;
     
     
