@@ -13,7 +13,11 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/auth": "http://localhost:8080",
+      "/auth": "http://localhost:8081",
+      "/products": "http://localhost:8081",
+      "/customer": "http://localhost:8081",
+      "/supplier": "http://localhost:8081",
+      "/api": "http://localhost:8081",
     },
   },
 });

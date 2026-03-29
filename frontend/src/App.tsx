@@ -6,9 +6,14 @@ import {
 } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthProvider";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { DashboardLayout } from "./components/DashboardLayout";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
-import { Home } from "./pages/Home";
+import { Dashboard } from "./pages/Dashboard";
+import { Products } from "./pages/Products";
+import { Customers } from "./pages/Customers";
+import { Suppliers } from "./pages/Suppliers";
+import { SalesOrders } from "./pages/SalesOrders";
 
 // Helper component to redirect authenticated users away from login/signup
 function AuthRoute({ children }: { children: React.ReactNode }) {
@@ -42,7 +47,13 @@ function App() {
             }
           />
           <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<Home />} />
+            <Route element={<DashboardLayout />}>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/customers" element={<Customers />} />
+              <Route path="/suppliers" element={<Suppliers />} />
+              <Route path="/sales-orders" element={<SalesOrders />} />
+            </Route>
           </Route>
         </Routes>
       </Router>
