@@ -13,7 +13,7 @@ public interface SalesOrderInterface {
 
     List<SalesOrderResponse> getAllOrders();
 
-    SalesOrderResponse  getOrderById(String id, OrderStatus status);
+    SalesOrderResponse  updateStatus(String id, OrderStatus status);
 
 
 

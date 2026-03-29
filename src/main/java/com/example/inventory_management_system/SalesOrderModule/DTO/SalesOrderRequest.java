@@ -17,7 +17,7 @@ public class SalesOrderRequest {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class ItemRequest{
-        private String productid;
+        private String productid; 
         private int quantity;
     }
 
