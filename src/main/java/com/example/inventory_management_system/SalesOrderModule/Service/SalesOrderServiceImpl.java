@@ -10,7 +10,6 @@ import com.example.inventory_management_system.SalesOrderModule.DTO.SalesOrderRe
 import com.example.inventory_management_system.SalesOrderModule.Entity.SalesEntity;
 import com.example.inventory_management_system.SalesOrderModule.Enum.OrderStatus;
 import com.example.inventory_management_system.SalesOrderModule.Entity.SalesOrderItem;
-import com.example.inventory_management_system.Product.Entity.Product;
 import com.example.inventory_management_system.Product.Entity.ProductEntity;
 
 import java.time.LocalDate;
