@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/api/sales-order")
-public class Controller {
+public class SalesOrderController {
 
     @Autowired
     private SalesOrderInterface salesOrderInterface;
