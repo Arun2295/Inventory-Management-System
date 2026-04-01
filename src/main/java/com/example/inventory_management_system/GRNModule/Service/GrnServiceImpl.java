@@ -61,7 +61,7 @@ public class GrnServiceImpl implements GrnService {
     }
 
     @Override
-    public List<GrnResponse> getAllGrn(){
+    public List<GrnResponse> getAllGrns(){
         List<GrnEntity> grnEntities = grnRepo.findAll();
         List<GrnResponse> responses = new ArrayList<>();
 
