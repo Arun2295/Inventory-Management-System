@@ -13,6 +13,7 @@ public class SalesSummaryResponse {
     private double totalSales;
     private int totalOrders; 
     private List<TopProducts>  topProducts;
+    private long pendingInvoices;
 
     @Data
     @AllArgsConstructor
