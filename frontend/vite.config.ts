@@ -18,6 +18,8 @@ export default defineConfig({
       "/customer": "http://localhost:8081",
       "/supplier": "http://localhost:8081",
       "/api": "http://localhost:8081",
+      "/grn": "http://localhost:8081",
+      "/invoices": "http://localhost:8081",
     },
   },
 });

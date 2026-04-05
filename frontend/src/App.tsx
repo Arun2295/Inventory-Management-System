@@ -14,6 +14,10 @@ import { Products } from "./pages/Products";
 import { Customers } from "./pages/Customers";
 import { Suppliers } from "./pages/Suppliers";
 import { SalesOrders } from "./pages/SalesOrders";
+import { PurchaseOrders } from "./pages/PurchaseOrders";
+import { GRN } from "./pages/GRN";
+import { Invoices } from "./pages/Invoices";
+import { Reports } from "./pages/Reports";
 
 // Helper component to redirect authenticated users away from login/signup
 function AuthRoute({ children }: { children: React.ReactNode }) {
@@ -53,6 +57,10 @@ function App() {
               <Route path="/customers" element={<Customers />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/sales-orders" element={<SalesOrders />} />
+              <Route path="/purchase-orders" element={<PurchaseOrders />} />
+              <Route path="/grn" element={<GRN />} />
+              <Route path="/invoices" element={<Invoices />} />
+              <Route path="/reports" element={<Reports />} />
             </Route>
           </Route>
         </Routes>

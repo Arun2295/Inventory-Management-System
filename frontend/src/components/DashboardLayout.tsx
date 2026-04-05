@@ -7,6 +7,10 @@ import {
   Users,
   Truck,
   ShoppingCart,
+  ClipboardList,
+  PackageCheck,
+  Receipt,
+  BarChart3,
   LogOut,
   Menu,
   X,
@@ -19,6 +23,10 @@ const navItems = [
   { path: "/customers", label: "Customers", icon: Users },
   { path: "/suppliers", label: "Suppliers", icon: Truck },
   { path: "/sales-orders", label: "Sales Orders", icon: ShoppingCart },
+  { path: "/purchase-orders", label: "Purchase Orders", icon: ClipboardList },
+  { path: "/grn", label: "GRN", icon: PackageCheck },
+  { path: "/invoices", label: "Invoices", icon: Receipt },
+  { path: "/reports", label: "Reports", icon: BarChart3 },
 ];
 
 export function DashboardLayout() {
@@ -70,7 +78,59 @@ export function DashboardLayout() {
           <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
             Main Menu
           </p>
-          {navItems.map((item) => {
+          {navItems.slice(0, 5).map((item) => {
+            const isActive = location.pathname === item.path;
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setSidebarOpen(false)}
+                className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? "bg-gradient-to-r from-indigo-600/80 to-indigo-500/60 text-white shadow-md shadow-indigo-500/20"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <Icon className="h-[18px] w-[18px] shrink-0" />
+                <span>{item.label}</span>
+                {isActive && (
+                  <ChevronRight className="ml-auto h-4 w-4 opacity-60" />
+                )}
+              </Link>
+            );
+          })}
+
+          <p className="mb-2 mt-6 px-3 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+            Operations
+          </p>
+          {navItems.slice(5, 8).map((item) => {
+            const isActive = location.pathname === item.path;
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setSidebarOpen(false)}
+                className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? "bg-gradient-to-r from-indigo-600/80 to-indigo-500/60 text-white shadow-md shadow-indigo-500/20"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <Icon className="h-[18px] w-[18px] shrink-0" />
+                <span>{item.label}</span>
+                {isActive && (
+                  <ChevronRight className="ml-auto h-4 w-4 opacity-60" />
+                )}
+              </Link>
+            );
+          })}
+
+          <p className="mb-2 mt-6 px-3 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+            Analytics
+          </p>
+          {navItems.slice(8).map((item) => {
             const isActive = location.pathname === item.path;
             const Icon = item.icon;
             return (
