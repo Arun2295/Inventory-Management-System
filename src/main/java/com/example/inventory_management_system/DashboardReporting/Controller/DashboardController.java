@@ -10,23 +10,23 @@ import com.example.inventory_management_system.DashboardReporting.Service.Report
 import com.example.inventory_management_system.DashboardReporting.Service.ReportingServiceInterface;
 
 @RestController
-@RequestMapping("/dashboard")
+@RequestMapping("/api/dashboard")
 public class DashboardController {
 
     @Autowired
     private  ReportingServiceInterface reportingInterface;
 
-    @GetMapping
+    @GetMapping("sales-summary")
     public ResponseEntity<?> getSalesSummary(){
         return ResponseEntity.ok(reportingInterface.getSalesSummary());
     }
 
-    @GetMapping
+    @GetMapping("purchase-summary")
     public ResponseEntity<?> getPurchaseSummary(){
         return ResponseEntity.ok(reportingInterface.getPurchaseSummary());
     }
 
-    @GetMapping
+    @GetMapping("stock-alert")
     public ResponseEntity<?> getStockAlert(){
         return ResponseEntity.ok(reportingInterface.getStockAlert());
     }
