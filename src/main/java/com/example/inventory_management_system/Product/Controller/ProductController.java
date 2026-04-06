@@ -20,7 +20,7 @@ import com.example.inventory_management_system.Product.DTO.ResponseDto;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 public class ProductController {
 
     @Autowired

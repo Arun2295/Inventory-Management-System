@@ -47,7 +47,17 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll())
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/products/**").hasRole("ADMIN")
+                        .requestMatchers("/api/customers/**").hasAnyRole("ADMIN","SALES_EXECUTIVE")
+                        .requestMatchers("/api/suppliers/**").hasAnyRole("ADMIN","PURCHASE_MANAGER")
+                        .requestMatchers("/api/sales-orders/**").hasAnyRole("ADMIN","SALES_EXECUTIVE")
+                        .requestMatchers("/api/purchase-orders/**").hasAnyRole("ADMIN","PURCHASE_MANAGER")
+                        .requestMatchers("/api/grns/**").hasAnyRole("ADMIN","PURCHASE_MANAGER","INVENTORY_MANAGER")
+                        .requestMatchers("/api/invoices/**").hasAnyRole("ADMIN","SALES_EXECUTIVE","ACCOUNTANT")
+                        .requestMatchers("/api/dashboard/**").hasAnyRole("ADMIN","ACCOUNTANT")
+                        .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

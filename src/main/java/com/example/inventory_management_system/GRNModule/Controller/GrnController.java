@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/grn")
+@RequestMapping("/api/grn")
 public class GrnController {
 
     @Autowired

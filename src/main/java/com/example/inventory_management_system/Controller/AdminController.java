@@ -16,13 +16,13 @@ import com.example.inventory_management_system.Service.UserService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 public class AdminController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping()
+    @GetMapping("/roles/{role}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getAllRoles(@PathVariable Role role){
         return ResponseEntity.ok().body(userService.getUserByRole(role));

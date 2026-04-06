@@ -17,21 +17,21 @@ import com.example.inventory_management_system.CustomerSupplierManagement.DTO.Cu
 import com.example.inventory_management_system.CustomerSupplierManagement.Service.CustomerService;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/customer")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
 
     @PostMapping("/create")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('SALESEXECUTIVE')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('SALES_EXECUTIVE')")
     public ResponseEntity<CustomerResponse> createCustomer(@RequestBody CustomerRequest customerRequest){
         CustomerResponse response = customerService.createCustomer(customerRequest);
         return ResponseEntity.status(201).body(response);
     }
 
     @GetMapping("/all")
-    @PreAuthorize("hasRole('ADMIN')or hasRole('SALESEXECUTIVE')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('SALES_EXECUTIVE')")
     public ResponseEntity<List<CustomerResponse>> getAllCustomers(){
         List<CustomerResponse> customer = customerService.getAllCustomers();
         return ResponseEntity.ok(customer);

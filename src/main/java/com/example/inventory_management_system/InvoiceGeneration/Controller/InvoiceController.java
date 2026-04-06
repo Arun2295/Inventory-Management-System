@@ -15,7 +15,7 @@ import com.example.inventory_management_system.InvoiceGeneration.Service.Invoice
 import java.util.List;
 
 @RestController
-@RequestMapping("/invoices")
+@RequestMapping("/api/invoices")
 public class InvoiceController {
 
     @Autowired
