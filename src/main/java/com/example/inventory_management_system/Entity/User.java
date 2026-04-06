@@ -7,7 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import com.example.inventory_management_system.Enum.Role;
 
 
 @Data
@@ -23,6 +23,6 @@ public class User {
     private String password;
     @Indexed(unique = true)
     private String email;
-    private String role = "USER";
+    private Role role;
 
 }
