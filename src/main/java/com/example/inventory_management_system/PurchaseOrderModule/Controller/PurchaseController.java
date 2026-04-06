@@ -3,6 +3,7 @@ package com.example.inventory_management_system.PurchaseOrderModule.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,18 +29,21 @@ public class PurchaseController {
     private PurchaseOrderInterface purchaseOrderInterface;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PURCHASE_MANAGER')")
     public ResponseEntity<List<PurchaseOrderResponse>> getAllOrders(){
         List<PurchaseOrderResponse> orders = purchaseOrderInterface.getAllOrders();
         return ResponseEntity.ok(orders);
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PURCHASE_MANAGER')")
     public ResponseEntity<PurchaseOrderResponse> createOrder(@RequestBody PurchaseOrderRequest request){
         PurchaseOrderResponse response = purchaseOrderInterface.createOrder(request);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}/status")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PURCHASE_MANAGER')")
     public ResponseEntity<PurchaseOrderResponse> updateStatus(@PathVariable String id, @RequestParam PurchaseOrderStatus status){
         PurchaseOrderResponse response = purchaseOrderInterface.updateStatus(id, status);
         return ResponseEntity.ok(response);

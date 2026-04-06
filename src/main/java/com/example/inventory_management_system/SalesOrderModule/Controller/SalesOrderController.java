@@ -2,6 +2,8 @@ package com.example.inventory_management_system.SalesOrderModule.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +29,7 @@ public class SalesOrderController {
     private SalesOrderInterface salesOrderInterface;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('SALES_EXECUTIVE')")
     public ResponseEntity<List<SalesOrderResponse>> getAllOrders(){
         List<SalesOrderResponse> orders = salesOrderInterface.getAllOrders();
         return ResponseEntity.ok(orders);
@@ -34,12 +37,14 @@ public class SalesOrderController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('SALES_EXECUTIVE')")
     public ResponseEntity<SalesOrderResponse> createOrder(@RequestBody SalesOrderRequest request){
         SalesOrderResponse response  = salesOrderInterface.createOrder(request);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}/status")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('SALES_EXECUTIVE')")
     public ResponseEntity<SalesOrderResponse> updateStatus(@PathVariable String id, @RequestParam OrderStatus status){
         SalesOrderResponse response = salesOrderInterface.updateStatus(id, status);
         return ResponseEntity.ok(response);
