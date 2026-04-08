@@ -18,24 +18,32 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
-    //assign role to user
-    public User assignRole(UpdateRoleRequest roleRequest){
+    // assign role to user
+    public User assignRole(UpdateRoleRequest roleRequest) {
 
-        User user = userRepo.findById(new ObjectId(roleRequest.getUserId())).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepo.findById(new ObjectId(roleRequest.getUserId()))
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if(user.getRole() == Role.ADMIN){
+        if (user.getRole() == Role.ADMIN) {
             throw new RuntimeException("Cannot change role of an admin user");
         }
         user.setRole(roleRequest.getRole());
         return userRepo.save(user);
     }
+
     // all users with role
-    public List<User> getUserByRole(Role role){
+    public List<User> getUserByRole(Role role) {
         return userRepo.findByRole(role);
     }
-    //get all users
-    public List<User> getAllUsers(){
+
+    // get all users
+    public List<User> getAllUsers() {
         return userRepo.findAll();
+    }
+
+    public User deleteUser(String userId) {
+        userRepo.deleteById(new ObjectId(userId));
+        return null;
     }
 
 }

@@ -30,7 +30,7 @@ export function Login() {
     setLoading(true);
 
     try {
-      await axios.post("/auth/Login", { email, password });
+      await axios.post("/api/auth/Login", { email, password });
       await refreshUser();
       navigate("/");
     } catch (err: unknown) {

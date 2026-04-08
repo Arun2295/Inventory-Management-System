@@ -17,19 +17,19 @@ public class DashboardController {
     @Autowired
     private  ReportingServiceInterface reportingInterface;
 
-    @GetMapping("sales-summary")
+    @GetMapping("/sales-summary")
     @PreAuthorize("hasRole('ADMIN') or hasRole('ACCOUNTANT')")
     public ResponseEntity<?> getSalesSummary(){
         return ResponseEntity.ok(reportingInterface.getSalesSummary());
     }
 
-    @GetMapping("purchase-summary")
+    @GetMapping("/purchase-summary")
     @PreAuthorize("hasRole('ADMIN') or hasRole('ACCOUNTANT')")
     public ResponseEntity<?> getPurchaseSummary(){
         return ResponseEntity.ok(reportingInterface.getPurchaseSummary());
     }
 
-    @GetMapping("stock-alert")
+    @GetMapping("/stock-alert")
     @PreAuthorize("hasRole('ADMIN') or hasRole('INVENTORY_MANAGER')")
     public ResponseEntity<?> getStockAlert(){
         return ResponseEntity.ok(reportingInterface.getStockAlert());

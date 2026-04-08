@@ -32,7 +32,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const refreshUser = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("/auth/me");
+      const res = await axios.get("/api/auth/me");
       setUser(res.data);
     } catch {
       setUser(null);
@@ -43,7 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     try {
-      await axios.post("/auth/Logout");
+      await axios.post("/api/auth/Logout");
       setUser(null);
     } catch (error) {
       console.error("Logout failed:", error);

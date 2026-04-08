@@ -2,6 +2,19 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
+// ── Admin Types ──
+export interface User {
+  id: string;
+  username: string;
+  email: string;
+  role: string;
+}
+
+export interface UpdateRoleRequest {
+  userId: string;
+  role: string;
+}
+
 // ── Product Types ──
 export interface Product {
   id: string;
@@ -168,27 +181,27 @@ export interface StockAlert {
 
 // ── Product API ──
 export const productApi = {
-  getAll: () => axios.get<Product[]>("/products/all").then((r) => r.data),
+  getAll: () => axios.get<Product[]>("/api/products/all").then((r) => r.data),
   create: (data: ProductRequest) =>
-    axios.post<Product>("/products/create", data).then((r) => r.data),
+    axios.post<Product>("/api/products/create", data).then((r) => r.data),
   update: (id: string, data: ProductRequest) =>
-    axios.put<Product>(`/products/update/${id}`, data).then((r) => r.data),
+    axios.put<Product>(`/api/products/update/${id}`, data).then((r) => r.data),
   delete: (id: string) =>
-    axios.delete<Product>(`/products/delete/${id}`).then((r) => r.data),
+    axios.delete<Product>(`/api/products/delete/${id}`).then((r) => r.data),
 };
 
 // ── Customer API ──
 export const customerApi = {
-  getAll: () => axios.get<Customer[]>("/customer/all").then((r) => r.data),
+  getAll: () => axios.get<Customer[]>("/api/customer/all").then((r) => r.data),
   create: (data: CustomerRequest) =>
-    axios.post<Customer>("/customer/create", data).then((r) => r.data),
+    axios.post<Customer>("/api/customer/create", data).then((r) => r.data),
 };
 
 // ── Supplier API ──
 export const supplierApi = {
-  getAll: () => axios.get<Supplier[]>("/supplier/all").then((r) => r.data),
+  getAll: () => axios.get<Supplier[]>("/api/supplier/all").then((r) => r.data),
   create: (data: SupplierRequest) =>
-    axios.post<Supplier>("/supplier/create", data).then((r) => r.data),
+    axios.post<Supplier>("/api/supplier/create", data).then((r) => r.data),
 };
 
 // ── Sales Order API ──
@@ -219,22 +232,22 @@ export const purchaseOrderApi = {
 
 // ── GRN API ──
 export const grnApi = {
-  getAll: () => axios.get<GrnResponse[]>("/grn").then((r) => r.data),
+  getAll: () => axios.get<GrnResponse[]>("/api/grn").then((r) => r.data),
   create: (data: GrnRequest) =>
-    axios.post<GrnResponse>("/grn", data).then((r) => r.data),
+    axios.post<GrnResponse>("/api/grn", data).then((r) => r.data),
 };
 
 // ── Invoice API ──
 export const invoiceApi = {
   getAll: () =>
-    axios.get<InvoiceResponse[]>("/invoices").then((r) => r.data),
+    axios.get<InvoiceResponse[]>("/api/invoices").then((r) => r.data),
   generate: (salesOrderId: string) =>
     axios
-      .post<InvoiceResponse>(`/invoices/${salesOrderId}`)
+      .post<InvoiceResponse>(`/api/invoices/${salesOrderId}`)
       .then((r) => r.data),
   downloadPdf: (id: string) =>
     axios
-      .get(`/invoices/${id}/pdf`, { responseType: "blob" })
+      .get(`/api/invoices/${id}/pdf`, { responseType: "blob" })
       .then((r) => r.data),
 };
 
@@ -252,4 +265,14 @@ export const dashboardApi = {
     axios
       .get<StockAlert[]>("/api/dashboard/stock-alert")
       .then((r) => r.data),
+};
+
+// ── Admin API ──
+export const adminApi = {
+  getAllUsers: () => axios.get<User[]>("/api/admin/all-users").then((r) => r.data),
+  getUsersByRole: (role: string) => axios.get<User[]>(`/api/admin/roles/${role}`).then((r) => r.data),
+  assignRole: (data: UpdateRoleRequest) =>
+    axios.put<User>("/api/admin/assign-role", data).then((r) => r.data),
+  deleteUser: (userId: string) =>
+    axios.delete(`/api/admin/${userId}`).then((r) => r.data),
 };

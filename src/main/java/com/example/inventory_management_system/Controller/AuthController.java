@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import com.example.inventory_management_system.DTO.LoginDto;
 import com.example.inventory_management_system.DTO.RegisterDto;
 import com.example.inventory_management_system.Entity.User;
+import com.example.inventory_management_system.Enum.Role;
 import com.example.inventory_management_system.Repository.UserRepo;
 import com.example.inventory_management_system.Security.Cookies;
 import com.example.inventory_management_system.Security.ImplementUserDetails;
 import com.example.inventory_management_system.Security.JwtUtil;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
     @Autowired
@@ -49,6 +50,7 @@ public class AuthController {
         user.setUsername(register.getUsername());
         user.setEmail(register.getEmail());
         user.setPassword(passwordEncoder.encode(register.getPassword()));
+        user.setRole(Role.PENDING); // Default role for new users
         
         userRepo.save(user);
 
@@ -80,7 +82,7 @@ public class AuthController {
             return ResponseEntity.ok(java.util.Map.of(
                 "username", user.getUsername(),
                 "email", user.getEmail(),
-                "role", user.getRole()
+                "role", user.getRole() != null ? user.getRole().name() : "PENDING"
             ));
         }
 

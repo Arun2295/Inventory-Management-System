@@ -31,7 +31,7 @@ export function Signup() {
     setLoading(true);
 
     try {
-      await axios.post("/auth/register", { username, email, password });
+      await axios.post("/api/auth/register", { username, email, password });
       await refreshUser();
       navigate("/");
     } catch (err: unknown) {

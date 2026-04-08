@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import com.example.inventory_management_system.Enum.Role;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 
 @Data
@@ -18,6 +20,7 @@ import com.example.inventory_management_system.Enum.Role;
 public class User {
 
     @Id
+    @JsonSerialize(using = ToStringSerializer.class)
     private ObjectId id;
     private String username;
     private String password;

@@ -39,7 +39,7 @@ public class InvoiceController {
     @PreAuthorize("hasRole('ADMIN') or hasRole('SALES_EXECUTIVE') or hasRole('ACCOUNTANT')")
     public ResponseEntity<byte[]> generateInvoicePDF(@PathVariable String id){
         byte[] pdf = invoiceService.generateInvoicePDF(id);
-        return ResponseEntity.ok().header("Content Disposition", "attachment; filename=invoice.pdf").contentType(MediaType.APPLICATION_PDF).body(pdf);
+        return ResponseEntity.ok().header("Content-Disposition", "attachment; filename=invoice.pdf").contentType(MediaType.APPLICATION_PDF).body(pdf);
     }
 
 

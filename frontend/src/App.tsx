@@ -18,6 +18,8 @@ import { PurchaseOrders } from "./pages/PurchaseOrders";
 import { GRN } from "./pages/GRN";
 import { Invoices } from "./pages/Invoices";
 import { Reports } from "./pages/Reports";
+import { PendingDashboard } from "./pages/PendingDashboard";
+import { UserManagement } from "./pages/UserManagement";
 
 // Helper component to redirect authenticated users away from login/signup
 function AuthRoute({ children }: { children: React.ReactNode }) {
@@ -51,6 +53,7 @@ function App() {
             }
           />
           <Route element={<ProtectedRoute />}>
+            <Route path="/pending" element={<PendingDashboard />} />
             <Route element={<DashboardLayout />}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />
@@ -61,6 +64,7 @@ function App() {
               <Route path="/grn" element={<GRN />} />
               <Route path="/invoices" element={<Invoices />} />
               <Route path="/reports" element={<Reports />} />
+              <Route path="/users" element={<UserManagement />} />
             </Route>
           </Route>
         </Routes>
